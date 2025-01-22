@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Utstyrsadministrasjon</title>
+</head>
+<body>
+    <h1>Utstyrsadministrasjon</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Utstyr</th>
+                <th>Status</th>
+                <th>Handling</th>
+            </tr>
+        </thead>
+        <tbody id="equipmentTable">
+            <tr>
+                <td>kamera</td>
+                <td class="status available">Tilgjengelig</td>
+                <td><button onclick="toggleStatus(this)">Endre status</button></td>
+            </tr>
+            <tr>
+                <td>stativ</td>
+                <td class="status rented">Utleid</td>
+                <td><button onclick="toggleStatus(this)">Endre status</button></td>
+            </tr>
+            <tr>
+                <td>lysutstyr</td>
+                <td class="status available">Tilgjengelig</td>
+                <td><button onclick="toggleStatus(this)">Endre status</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+    
+
+    <script>
+        function toggleStatus(button) {
+            const row = button.parentElement.parentElement;
+            const statusCell = row.querySelector('.status');
+
+            if (statusCell.classList.contains('available')) {
+                statusCell.textContent = 'Utleid';
+                statusCell.classList.remove('available');
+                statusCell.classList.add('rented');
+            } else {
+                statusCell.textContent = 'Tilgjengelig';
+                statusCell.classList.remove('rented');
+                statusCell.classList.add('available');
+            }
+        }
+    </script>
+</body>
+</html>
