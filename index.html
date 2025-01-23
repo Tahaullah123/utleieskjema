@@ -36,9 +36,60 @@
     </form>
 
     <script>
+        // Hardkodet utstyr som systemet starter med
         const initialEquipment = [
+            { name: 'Kamera', status: 'Tilgjengelig' },
+            { name: 'Stativ', status: 'Tilgjengelig' },
+            { name: 'Lysutstyr', status: 'Utleid' },
+        ];
+
+        // Funksjon for å oppdatere utstyrstabellen
+        function updateEquipmentTable() {
+            const tableBody = document.getElementById('equipmentTable');
+            tableBody.innerHTML = ''; // Tøm tabellen før den oppdateres
+
+            initialEquipment.forEach((equipment, index) => {
+                const row = document.createElement('tr');
+                
+                const nameCell = document.createElement('td');
+                nameCell.textContent = equipment.name;
+                row.appendChild(nameCell);
+                
+                const statusCell = document.createElement('td');
+                statusCell.textContent = equipment.status;
+                statusCell.classList.add(equipment.status === 'Tilgjengelig' ? 'available' : 'rented');
+                row.appendChild(statusCell);
+                
+                const actionCell = document.createElement('td');
+                
+                // Legg til knappen for å endre status
+                const changeStatusButton = document.createElement('button');
+                changeStatusButton.textContent = 'Endre status';
+                changeStatusButton.onclick = function () {
                     toggleStatus(index);
+                };
+                actionCell.appendChild(changeStatusButton);
+
+                // Legg til knappen for å slette utstyr
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Slett';
+                deleteButton.onclick = function () {
+                    deleteEquipment(index);
+                };
+                actionCell.appendChild(deleteButton);
+                
+                row.appendChild(actionCell);
+                tableBody.appendChild(row);
+            });
         }
+
+        // Funksjon for å endre status på utstyr
+        function toggleStatus(index) {
+            const equipment = initialEquipment[index];
+            equipment.status = equipment.status === 'Tilgjengelig' ? 'Utleid' : 'Tilgjengelig';
+            updateEquipmentTable(); // Oppdater tabellen etter statusendringen
+        }
+
         function deleteEquipment(index) {
             initialEquipment.splice(index, 1); // Fjern utstyret fra listen
             updateEquipmentTable(); // Oppdater tabellen etter sletting
@@ -60,5 +111,6 @@
         // Initialiser tabellen når siden lastes
         updateEquipmentTable();
     </script>
+
 </body>
 </html>
