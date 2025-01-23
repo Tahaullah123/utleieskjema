@@ -36,7 +36,29 @@
     </form>
 
     <script>
+        const initialEquipment = [
+                    toggleStatus(index);
         }
+        function deleteEquipment(index) {
+            initialEquipment.splice(index, 1); // Fjern utstyret fra listen
+            updateEquipmentTable(); // Oppdater tabellen etter sletting
+        }
+
+        // Funksjon for å legge til nytt utstyr
+        document.getElementById('registerForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            
+            const equipmentName = document.getElementById('equipmentName').value.trim();
+            if (equipmentName) {
+                initialEquipment.push({ name: equipmentName, status: 'Tilgjengelig' });
+                updateEquipmentTable(); // Oppdater tabellen med det nye utstyret
+            }
+            
+            document.getElementById('equipmentName').value = ''; // Tøm inputfeltet
+        });
+
+        // Initialiser tabellen når siden lastes
+        updateEquipmentTable();
     </script>
 </body>
 </html>
