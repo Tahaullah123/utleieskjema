@@ -5,9 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Utstyrsadministrasjon</title>
+    <style>
+       
+    </style>
 </head>
 <body>
+
     <h1>Utstyrsadministrasjon</h1>
+
+    <h2>Utstyrsliste</h2>
     <table>
         <thead>
             <tr>
@@ -17,40 +23,19 @@
             </tr>
         </thead>
         <tbody id="equipmentTable">
-            <tr>
-                <td>kamera</td>
-                <td class="status available">Tilgjengelig</td>
-                <td><button onclick="toggleStatus(this)">Endre status</button></td>
-            </tr>
-            <tr>
-                <td>stativ</td>
-                <td class="status rented">Utleid</td>
-                <td><button onclick="toggleStatus(this)">Endre status</button></td>
-            </tr>
-            <tr>
-                <td>lysutstyr</td>
-                <td class="status available">Tilgjengelig</td>
-                <td><button onclick="toggleStatus(this)">Endre status</button></td>
-            </tr>
+            <!-- Liste med utstyr legges til her -->
         </tbody>
     </table>
 
-    
+    <h2>Registrer nytt utstyr</h2>
+    <form id="registerForm">
+        <label for="equipmentName">Navn på utstyr:</label>
+        <input type="text" id="equipmentName" name="equipmentName" required>
+        <br>
+        <button type="submit">Legg til utstyr</button>
+    </form>
 
     <script>
-        function toggleStatus(button) {
-            const row = button.parentElement.parentElement;
-            const statusCell = row.querySelector('.status');
-
-            if (statusCell.classList.contains('available')) {
-                statusCell.textContent = 'Utleid';
-                statusCell.classList.remove('available');
-                statusCell.classList.add('rented');
-            } else {
-                statusCell.textContent = 'Tilgjengelig';
-                statusCell.classList.remove('rented');
-                statusCell.classList.add('available');
-            }
         }
     </script>
 </body>
